@@ -7,4 +7,18 @@
     height: 30px;
     width: 30px;
     text-align: center;
+    color: white;
+}
+
+
+.psor {
+    display: flex;
+    flex-direction: row;
+}
+
+.pdoboz {
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    color: black;
 }
