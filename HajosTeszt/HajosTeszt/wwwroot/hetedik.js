@@ -1,5 +1,7 @@
 ﻿var kérdések;
 var kérdésSorszám = 0;
+var jóVálasz;
+var questionID = 4;
 
 function letöltés() {
     fetch('questions.json')
@@ -14,15 +16,36 @@ function letöltés() {
 fetch('/questions/1')
     .then(response => response.json())
     .then(data => kérdésMegjelenítés(data)
-    );
+);
+
+function előre() {
+    questionID++;
+    kérdésBetöltés(questionID)
+}
+
+function vissza() {
+    questionID--;
+    kérdésBetöltés(questionID)
+}
 
 function kérdésMegjelenítés(kérdés) {
+    if (!kérdés) return;
     console.log(kérdés);
     document.getElementById("kérdés_szöveg").innerText = kérdés.questionText
     document.getElementById("válasz1").innerText = kérdés.answer1
     document.getElementById("válasz2").innerText = kérdés.answer2
     document.getElementById("válasz3").innerText = kérdés.answer3
-    document.getElementById("kép").src = "https://szoft1.comeback.hu/hajo/" + kérdés.image;
+    jóVálasz = kérdés.correctAnswer;
+    if (kérdés.image) {
+        document.getElementById("kép").src = "https://szoft1.comeback.hu/hajo/" + kérdés.image;
+        document.getElementById("kép").classList.remove("rejtett")
+    }
+    else {
+        document.getElementById("kép").classList.add("rejtett")
+    }
+    document.getElementById("válasz1").classList.remove("jó", "rossz");
+    document.getElementById("válasz2").classList.remove("jó", "rossz");
+    document.getElementById("válasz3").classList.remove("jó", "rossz");
 }
 
 function kérdésBetöltés(id) {
@@ -32,7 +55,7 @@ function kérdésBetöltés(id) {
                 console.error(`Hibás válasz: ${response.status}`)
             }
             else {
-                return response.json()
+                kérdésMegjelenítés(response.json())
             }
         })
         .then(data => kérdésMegjelenítés(data));
@@ -67,6 +90,12 @@ var kérdésMegjelenítés = function (kérdésSzáma) {
     válasz3.innerText = kérdések[kérdésSzáma].answer3
 }
 
+window.onload = function (e) {
+    console.log("Oldal betöltve...");
+    document.getElementById("előre").onclick = előre;
+    document.getElementById("vissza").onclick = vissza;
+    kérdésBetöltés(questionID)
+}
 
 window.onload = () => {
 

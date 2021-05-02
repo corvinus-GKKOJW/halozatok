@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="hajostilus.css">
-    <script src="hetedik.js"></script>
+    <script src="tizedik.js"></script>
     <title></title>
 </head>
 <body>
@@ -15,17 +15,17 @@
 
         <div id="középső">
             <div id="válaszok">
-                <div id="válasz1" class="kerdes kattintható">Válasz 1</div>
-                <div id="válasz2" class="kerdes kattintható">Válasz 2</div>
-                <div id="válasz3" class="kerdes kattintható">Válasz 3</div>
+                <div id="válasz1" onclick="Válasz1()" class="kerdes kattintható">Válasz 1</div>
+                <div id="válasz2" onclick="Válasz2()" class="kerdes kattintható">Válasz 2</div>
+                <div id="válasz3" onclick="Válasz3()" class="kerdes kattintható">Válasz 3</div>
             </div>
             <div id="kép">
                 <img id="kép1" src="https://szoft1.comeback.hu/hajo/teszt-0050.jpg" />
             </div>
         </div>
         <div id="vezérlő">
-            <div class="gomb kattintható" id="vissza">Vissza</div>
-            <div class="gomb kattintható" id="előre">Előre</div>
+            <div class="gomb kattintható" onclick="vissza()" id="vissza">Vissza</div>
+            <div class="gomb kattintható" onclick="előre()" id="előre">Előre</div>
         </div>
     </div>
 </body>
